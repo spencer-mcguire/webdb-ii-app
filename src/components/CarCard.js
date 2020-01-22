@@ -38,7 +38,7 @@ export const CarCard = props => {
 
   return (
     <div className="cards">
-      <p>inventory number : {id}</p>
+      <p>Inventory number : {id}</p>
       <p>Make : {make}</p>
       <p>Model : {model}</p>
       <p>Mileage : {mileage}</p>
