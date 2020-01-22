@@ -48,6 +48,7 @@ export const Header = ({ statusHelper }) => {
         statusHelper();
         setNewCar(res.data);
         toast({
+          position: "top-right",
           title: "New Car Added.",
           description: "You have added a new car to the inventory.",
           status: "success",
@@ -55,7 +56,17 @@ export const Header = ({ statusHelper }) => {
           isClosable: true
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        toast({
+          position: "top-right",
+          title: "An error occurred.",
+          description: "Adding a car was unsuccessful.",
+          status: "error",
+          duration: 9000,
+          isClosable: true
+        });
+      });
   };
 
   return (
