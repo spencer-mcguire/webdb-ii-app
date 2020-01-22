@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import { Header } from "./components/Header";
+import { CarList } from "./components/CarList";
+
+import { ThemeProvider } from "@chakra-ui/core";
+import customTheme from "./theme/customTheme";
+import "./App.css";
 
 function App() {
+  const [status, setStatus] = useState(false);
+
+  const statusHelper = () => {
+    setStatus(!status);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={customTheme}>
+      <div className="App">
+        <Header statusHelper={statusHelper} />
+        <CarList status={status} statusHelper={statusHelper} />
+      </div>
+    </ThemeProvider>
   );
 }
 
