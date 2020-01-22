@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider theme={customTheme}>
       <div className="App">
         <Header statusHelper={statusHelper} />
-        <CarList status={status} />
+        <CarList status={status} statusHelper={statusHelper} />
       </div>
     </ThemeProvider>
   );

@@ -3,12 +3,12 @@ import axios from "axios";
 
 import { CarCard } from "./CarCard";
 
-export const CarList = ({ status }) => {
+export const CarList = ({ status, statusHelper }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/cars")
+      .get("https://webdb-ii-server.herokuapp.com/api/cars")
       .then(res => {
         console.log(res);
         setCars(res.data);
@@ -20,7 +20,7 @@ export const CarList = ({ status }) => {
     <div className="main-container">
       <div className="card-container">
         {cars.map(i => (
-          <CarCard key={i.id} data={i} />
+          <CarCard key={i.id} data={i} statusHelper={statusHelper} />
         ))}
       </div>
     </div>

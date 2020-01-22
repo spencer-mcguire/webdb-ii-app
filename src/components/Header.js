@@ -13,10 +13,12 @@ import {
   FormControl,
   FormLabel,
   Input,
-  useDisclosure
+  useDisclosure,
+  useToast
 } from "@chakra-ui/core";
 
 export const Header = ({ statusHelper }) => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [newCar, setNewCar] = useState({
     make: "",
@@ -40,11 +42,18 @@ export const Header = ({ statusHelper }) => {
   const handleSubmit = e => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/api/cars", newCar)
+      .post("https://webdb-ii-server.herokuapp.com/api/cars", newCar)
       .then(res => {
         console.log(res);
         statusHelper();
         setNewCar(res.data);
+        toast({
+          title: "New Car Added.",
+          description: "You have added a new car to the inventory.",
+          status: "success",
+          duration: 9000,
+          isClosable: true
+        });
       })
       .catch(err => console.log(err));
   };
